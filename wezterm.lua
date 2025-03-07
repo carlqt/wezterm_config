@@ -48,6 +48,11 @@ config.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 1000 }
 config.keys = {
 	{ key = "%", mods = "LEADER|SHIFT", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 	{ key = '"', mods = "LEADER|SHIFT", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
+	{
+		key = "z",
+		mods = "LEADER",
+		action = act.TogglePaneZoomState,
+	},
 	split_nav("move", "h"),
 	split_nav("move", "j"),
 	split_nav("move", "k"),
