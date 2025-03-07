@@ -5,4 +5,6 @@ config.window_close_confirmation = "NeverPrompt"
 
 keymaps.apply_to_config(config)
 
+require("statusline")
+
 return config
