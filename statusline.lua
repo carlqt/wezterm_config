@@ -14,25 +14,8 @@ wezterm.on("update-right-status", function(window, pane)
 		local cwd = ""
 		local hostname = ""
 
-		if type(cwd_uri) == "userdata" then
-			-- Running on a newer version of wezterm and we have
-			-- a URL object here, making this simple!
-
-			cwd = cwd_uri.file_path
-			hostname = cwd_uri.host or wezterm.hostname()
-		else
-			-- an older version of wezterm, 20230712-072601-f4abf8fd or earlier,
-			-- which doesn't have the Url object
-			cwd_uri = cwd_uri:sub(8)
-			local slash = cwd_uri:find("/")
-			if slash then
-				hostname = cwd_uri:sub(1, slash - 1)
-				-- and extract the cwd from the uri, decoding %-encoding
-				cwd = cwd_uri:sub(slash):gsub("%%(%x%x)", function(hex)
-					return string.char(tonumber(hex, 16))
-				end)
-			end
-		end
+		cwd = cwd_uri.file_path
+		hostname = cwd_uri.host or wezterm.hostname()
 
 		-- Remove the domain name portion of the hostname
 		local dot = hostname:find("[.]")
