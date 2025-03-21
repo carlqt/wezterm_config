@@ -6,6 +6,6 @@ config.tab_bar_at_bottom = true
 
 keymaps.apply_to_config(config)
 
-require("statusline")
+require("statusline").setup()
 
 return config
