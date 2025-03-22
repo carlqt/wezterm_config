@@ -54,6 +54,11 @@ function module.apply_to_config(config)
 			mods = "LEADER",
 			action = act.TogglePaneZoomState,
 		},
+		{
+			key = "y",
+			mods = "LEADER",
+			action = act.ActivateCopyMode,
+		},
 		split_nav("move", "h"),
 		split_nav("move", "j"),
 		split_nav("move", "k"),
