@@ -44,8 +44,33 @@ local function split_nav(resize_or_move, key)
 	}
 end
 
+local function copy_mode_keys()
+	local keys = wezterm.gui.default_key_tables().copy_mode
+
+	-- overrides the default keymap
+	table.insert(
+		keys,
+		{
+			key = 'y',
+			mods = 'NONE',
+			action = act.Multiple {
+				{ CopyTo = 'ClipboardAndPrimarySelection' },
+				{ CopyMode = 'ClearSelectionMode' }
+			},
+		}
+	)
+
+	return {
+		copy_mode = keys
+	}
+end
+
+--- @param config { leader: table, keys: table, key_tables: { copy_mode: table } }
 function module.apply_to_config(config)
 	config.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 1000 }
+
+	config.key_tables = copy_mode_keys()
+
 	config.keys = {
 		{ key = "%", mods = "LEADER|SHIFT", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 		{ key = '"', mods = "LEADER|SHIFT", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
@@ -53,6 +78,11 @@ function module.apply_to_config(config)
 			key = "z",
 			mods = "LEADER",
 			action = act.TogglePaneZoomState,
+		},
+		{
+			key = "y",
+			mods = "LEADER",
+			action = act.ActivateCopyMode,
 		},
 		split_nav("move", "h"),
 		split_nav("move", "j"),
