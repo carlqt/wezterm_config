@@ -48,20 +48,17 @@ local function copy_mode_keys()
 	local keys = wezterm.gui.default_key_tables().copy_mode
 
 	-- overrides the default keymap
-	table.insert(
-		keys,
-		{
-			key = 'y',
-			mods = 'NONE',
-			action = act.Multiple {
-				{ CopyTo = 'ClipboardAndPrimarySelection' },
-				{ CopyMode = 'ClearSelectionMode' }
-			},
-		}
-	)
+	table.insert(keys, {
+		key = "y",
+		mods = "NONE",
+		action = act.Multiple({
+			{ CopyTo = "ClipboardAndPrimarySelection" },
+			{ CopyMode = "ClearSelectionMode" },
+		}),
+	})
 
 	return {
-		copy_mode = keys
+		copy_mode = keys,
 	}
 end
 
@@ -84,6 +81,10 @@ function module.apply_to_config(config)
 			mods = "LEADER",
 			action = act.ActivateCopyMode,
 		},
+		-- Create a new workspace with a random name and switch to it
+		{ key = "c", mods = "LEADER", action = act.SwitchToWorkspace },
+		{ key = "n", mods = "LEADER", action = act.SwitchWorkspaceRelative(1) },
+		{ key = "p", mods = "LEADER", action = act.SwitchWorkspaceRelative(-1) },
 		split_nav("move", "h"),
 		split_nav("move", "j"),
 		split_nav("move", "k"),
