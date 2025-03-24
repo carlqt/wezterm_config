@@ -85,6 +85,11 @@ function module.apply_to_config(config)
 		{ key = "c", mods = "LEADER", action = act.SwitchToWorkspace },
 		{ key = "n", mods = "LEADER", action = act.SwitchWorkspaceRelative(1) },
 		{ key = "p", mods = "LEADER", action = act.SwitchWorkspaceRelative(-1) },
+		{
+			key = "9",
+			mods = "CMD",
+			action = wezterm.action.ShowTabNavigator,
+		},
 		split_nav("move", "h"),
 		split_nav("move", "j"),
 		split_nav("move", "k"),
