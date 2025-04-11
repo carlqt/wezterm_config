@@ -82,9 +82,10 @@ function module.apply_to_config(config)
 			action = act.ActivateCopyMode,
 		},
 		-- Create a new workspace with a random name and switch to it
-		{ key = "c", mods = "LEADER", action = act.SwitchToWorkspace },
-		{ key = "n", mods = "LEADER", action = act.SwitchWorkspaceRelative(1) },
-		{ key = "p", mods = "LEADER", action = act.SwitchWorkspaceRelative(-1) },
+		{ key = "c", mods = "LEADER", action = act.SpawnTab("CurrentPaneDomain") },
+		{ key = "n", mods = "LEADER", action = act.ActivateTabRelative(1) },
+		{ key = "p", mods = "LEADER", action = act.ActivateTabRelative(-1) },
+		{ key = "l", mods = "LEADER", action = act.ActivateLastTab },
 		{
 			key = "9",
 			mods = "CMD",
